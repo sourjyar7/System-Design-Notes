@@ -19,8 +19,15 @@ Deep Dives :-
     - Create multiple brokers (1 broker typically can be assumed to handle 10k messages and total 1 TB data offcourse with suitable hardware)
     - Aim to keep message size < 1 MB
     - Choose a good partitioning key (so that messages are evenly distributed across partitions)
+    - How to deal with a hot partition ? - Add a suffix to the key,eg If the original key was addidas-key, make it as addidas-key:n where n is (1,10). So this way , the traffic gets distributed within 10 ndifferent partitions. 
 2. Duarability and Fault Tolerance
+    - Each partition has replicas (called followers). The original one is called the leader and it has followers who sync up the messages from the leader and stay prepared to take over incase the leader goes down.
+    - There are 2 main configs
+        replicas - no.of followers 
+        ack - the no.of followers that need to acknowledge a message before moving on the next one
+        Higher the ack - more is the durability but slower are the operations and vice versa. 
 3. Error and Retries
+     
 4. Data Resilience
 5. Performance Optimization
 
