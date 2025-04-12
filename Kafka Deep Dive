@@ -16,7 +16,11 @@ Components
 Deep Dives :- 
 
 1. Scalability
+    - Create multiple brokers (1 broker typically can be assumed to handle 10k messages and total 1 TB data offcourse with suitable hardware)
+    - Aim to keep message size < 1 MB
+    - Choose a good partitioning key (so that messages are evenly distributed across partitions)
 2. Duarability and Fault Tolerance
 3. Error and Retries
 4. Data Resilience
 5. Performance Optimization
+
