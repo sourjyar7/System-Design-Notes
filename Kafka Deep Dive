@@ -1,2 +1,15 @@
 Kafka Deep Dive :-
 
+Usage : Used mainly for high throughput event streaming and message queing.
+
+Components
+
+1. Producers (Publish messages using Producer Api)
+2. Consumers (Consume messages using Consumer Api)
+3. Kafka Cluster (Holds the brain of the system ,eg - All consumers commit their offsetr values to the cluster for use in case they go down)
+4. Message Brokers (Receives messages and routes them to the designated partition)
+5. Partition (Used for separating traffic by use case of scalability)
+6. Topics (Logical division of messages in the application itself)
+7. Partition Key (Present in every message. Used to decide which partition , this message is destined for.)
+8. Consumer Groups (Used primarily to ensure that a message from a topic is consumed only once. Genrally every consumer group has a designated topic. Every consumer in a group has a designated partition range from which to consume.)
+9. 
