@@ -12,4 +12,11 @@ Components
 6. Topics (Logical division of messages in the application itself)
 7. Partition Key (Present in every message. Used to decide which partition , this message is destined for.)
 8. Consumer Groups (Used primarily to ensure that a message from a topic is consumed only once. Genrally every consumer group has a designated topic. Every consumer in a group has a designated partition range from which to consume.)
-9. 
+
+Deep Dives :- 
+
+1. Scalability
+2. Duarability and Fault Tolerance
+3. Error and Retries
+4. Data Resilience
+5. Performance Optimization
