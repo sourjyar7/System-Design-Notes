@@ -11,7 +11,7 @@ Components
 5. Partition (Used for separating traffic by use case of scalability)
 6. Topics (Logical division of messages in the application itself)
 7. Partition Key (Present in every message. Used to decide which partition , this message is destined for.)
-8. Consumer Groups (Used primarily to ensure that a message from a topic is consumed only once. Genrally every consumer group has a designated topic. Every consumer in a group has a designated partition range from which to consume.)
+8. Consumer Groups (Used primarily to ensure that a message from a topic is consumed only once. Generally every consumer group has a designated topic. Every consumer in a group has a designated partition range from which to consume.)
 
 Deep Dives :- 
 
@@ -20,6 +20,7 @@ Deep Dives :-
     - Aim to keep message size < 1 MB
     - Choose a good partitioning key (so that messages are evenly distributed across partitions)
     - How to deal with a hot partition ? - Add a suffix to the key,eg If the original key was addidas-key, make it as addidas-key:n where n is (1,10). So this way , the traffic gets distributed within 10 ndifferent partitions. 
+                                           Also we can use Backpressure, that is slow down the Producer itself.
 2. Duarability and Fault Tolerance
     - Each partition has replicas (called followers). The original one is called the leader and it has followers who sync up the messages from the leader and stay prepared to take over incase the leader goes down.
     - There are 2 main configs
@@ -27,7 +28,14 @@ Deep Dives :-
         ack - the no.of followers that need to acknowledge a message before moving on the next one
         Higher the ack - more is the durability but slower are the operations and vice versa. 
 3. Error and Retries
-     
-4. Data Resilience
+     - there is a in-built retry mechanism in the Kafka Producer api for retrying with time intervals. Use idempotent mode to prevent duplicate messages while retrying.
+     - On the Consumer side ,there is no inbuilt mechanism, but for the sake of failed jobs , we can push them to a retry partition from where they will be re consumed. After a certain number of retries , if they still fail we can push them to a final partition which is generally known as the Dead Letter Queue.
+4. Data Retention Policy
+     - there are 2 parameters 
+        retention.ms - time period for which a message is retained (default is 7 days)
+        retention.size - size limit till which a message is retained (default is 1 GB)
 5. Performance Optimization
+    - Batch messages in the producer (while batching use 2 parameters - maxtime[time period for which messages are batched],maxsize[size limit of a batch])
+    - Compress messages in the Producer (inbuilt mechanism)
+
 
