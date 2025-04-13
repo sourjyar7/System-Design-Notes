@@ -33,7 +33,23 @@ Consumers read from the log file of a partition by Offset. After processing , co
 Partition A log file
 of8  of7  of6  of5  of4  of3  of2  of1  ----> consumer ---> commits offset to Cluster controller 
 
-          
+
+When to use in Interview? 
+
+- When u need async processing or a message queue
+  eg - Youtube video transcoding
+
+- Inorder message processing 
+  eg - A Ticketmaster waiting queue
+
+- When you have to decouple the event Producer and Consumer for scaling independently
+  eg - A Online judge / Leetcode
+
+- Anytime we need to stream a lot of data
+  eg - Ad click Aggregator
+
+- Stream of messages need to be consumed by multiple consumers
+  eg - fb/insta live stream
 
 Deep Dives :- 
 
