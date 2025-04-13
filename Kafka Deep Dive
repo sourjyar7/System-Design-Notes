@@ -6,12 +6,34 @@ Components
 
 1. Producers (Publish messages using Producer Api)
 2. Consumers (Consume messages using Consumer Api)
-3. Kafka Cluster (Holds the brain of the system ,eg - All consumers commit their offsetr values to the cluster for use in case they go down)
+3. Kafka Cluster Controller (Holds the brain of the system ,eg - All consumers commit their offsetr values to the cluster for use in case they go down)
 4. Message Brokers (Receives messages and routes them to the designated partition)
 5. Partition (Used for separating traffic by use case of scalability. It is a queue itself, can be thought of as a separate log file on disk)
 6. Topics (Logical division of partitions. Its a way of organising the data for the application itself)
 7. Partition Key (Present in every message. Used to decide which partition , this message is destined for.)
 8. Consumer Groups (Used primarily to ensure that a message from a topic is consumed only once. Generally every consumer group has a designated topic. Every consumer in a group has a designated partition range from which to consume.)
+
+Lifecycle of a message :-
+
+  A message has following parts -
+   - header
+   - key (partition key)
+   - value
+   - timestamp
+
+Producer  ------> Publishes a msg ---> Broker (Check if msg has a key) ---> if not , then simple round robin allocation to a partition
+                                              |
+                                              |  (if yes)
+                                              |
+                                              \/  
+                             Uses a hash function on the partition key ----> writes to log file of correct partition
+
+Consumers read from the log file of a partition by Offset. After processing , consumer commits the offset to the cluster controller. Incase it goes down, it can always ping the controller for the last offset after coming back live.
+
+Partition A log file
+of8  of7  of6  of5  of4  of3  of2  of1  ----> consumer ---> commits offset to Cluster controller 
+
+          
 
 Deep Dives :- 
 
