@@ -1,0 +1,28 @@
+HLD and LLD Topics :-
+
+1. Consistent Hashing
+2. Rate limiting Algos
+3. Bloom Filters
+4. Sharding and Denormalisation
+5. Load Balancing
+
+Questions lld:- 
+
+1. Tic tac toe
+2. Parking Lot
+3. Book my Show
+4. Splitwise
+
+Questions Hld :- 
+
+1. Web crawler
+2. Ticket master
+3. Messaging app
+4. Uber
+5. Object Store like s3 + Quad Trees
+6. Rate limiting system
+7. Proximity Service
+8. Message Queing System
+9. Stock Exchange
+10. Payment Gateway
+11. Ad Click Aggregation System
